@@ -5,7 +5,11 @@ class App extends Component {
   state = {};
 
   render() {
-    return <Container></Container>;
+    return (
+      <Container>
+        <h1>Test</h1>
+      </Container>
+    );
   }
 }
 
