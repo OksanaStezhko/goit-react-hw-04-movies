@@ -15,3 +15,12 @@ code {
 ul {
   list-style: none;
 }
+
+.navlink {
+  color: blue;
+  text-decoration: none;
+}
+
+.navlink--active {
+  color: red;
+}
