@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import TrandingMoviesList from '../components/TrandingMoviesList';
+// import TrandingMoviesList from '../components/TrandingMoviesList';
 
-import fetchTrandingMovies from '../servises/themovies-api';
+import fetchTheMovieDb from '../servises/themovies-api';
 
 class HomeView extends Component {
   state = { movies: null };
 
   async componentDidMount() {
-    const response = await fetchTrandingMovies();
-    console.log('result', response.results);
+    const response = await fetchTheMovieDb('trading');
     this.setState({ movies: response.results });
   }
   render() {
@@ -17,7 +17,13 @@ class HomeView extends Component {
       <>
         <h1>Tranding today</h1>
         {this.state.movies && (
-          <TrandingMoviesList moviesList={this.state.movies} />
+          <ul>
+            {this.state.movies.map(movie => (
+              <li key={movie.id}>
+                <Link to={`movies/${movie.id}`}>{movie.title}</Link>
+              </li>
+            ))}
+          </ul>
         )}
       </>
     );
