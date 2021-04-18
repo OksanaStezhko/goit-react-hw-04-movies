@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/Searchbar';
+import MovieList from '../components/MovieList';
 import fetchTheMovieDb from '../servises/themovies-api';
-
+import routes from '../routes';
 class MovieView extends Component {
   state = {
     movies: null,
     searchQuery: '',
-    error: null,
-    isLoading: false,
   };
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.searchQuery !== this.state.searchQuery) {
-      console.log('ищу:', this.state.searchQuery);
       const response = await fetchTheMovieDb(
         'search',
         '',
         this.state.searchQuery,
       );
-      console.log('нашла:', response);
+
       this.setState({ movies: response.results });
     }
   }
@@ -28,27 +26,16 @@ class MovieView extends Component {
   handleChangeQuery = query => {
     this.setState({
       searchQuery: query,
-      movies: [],
-      error: null,
-      isLoading: false,
     });
+    console.log(this.props.match);
+    this.props.history.push(`${routes.movies}?query=${query}`);
   };
 
   render() {
-    console.log();
     return (
       <>
         <SearchBar onSubmit={this.handleChangeQuery} />
-
-        {this.state.movies && (
-          <ul>
-            {this.state.movies.map(movie => (
-              <li key={movie.id}>
-                <Link to={`movies/${movie.id}`}>{movie.title}</Link>
-              </li>
-            ))}
-          </ul>
-        )}
+        {this.state.movies && <MovieList movies={this.state.movies} />}
       </>
     );
   }

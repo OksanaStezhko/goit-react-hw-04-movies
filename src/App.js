@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
-import Container from './components/Container';
 
+import routes from './routes';
+
+import Container from './components/Container';
 import HomeView from './views/HomeView';
 import MoviesView from './views/MoviesView';
 import MovieInfo from './views/MovieInfo';
-import NotFoundView from './views/NotFoundView';
+
 // import Container from './components/Container';
 
 const App = () => (
@@ -32,10 +34,10 @@ const App = () => (
       </li>
     </ul>
     <Switch>
-      <Route exact path="/" component={HomeView} />;
-      <Route exact path="/movies" component={MoviesView} />;
-      <Route path="/movies/:movieId" component={MovieInfo} />;
-      <Route component={NotFoundView} />
+      <Route exact path={routes.home} component={HomeView} />;
+      <Route path={routes.movieInfo} component={MovieInfo} />;
+      <Route path={routes.movie} component={MoviesView} />;
+      <Route component={HomeView} />
     </Switch>
   </Container>
 );

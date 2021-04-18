@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-// import TrandingMoviesList from '../components/TrandingMoviesList';
+import MovieList from '../components/MovieList';
 
 import fetchTheMovieDb from '../servises/themovies-api';
 
@@ -16,15 +15,7 @@ class HomeView extends Component {
     return (
       <>
         <h1>Tranding today</h1>
-        {this.state.movies && (
-          <ul>
-            {this.state.movies.map(movie => (
-              <li key={movie.id}>
-                <Link to={`movies/${movie.id}`}>{movie.title}</Link>
-              </li>
-            ))}
-          </ul>
-        )}
+        {this.state.movies && <MovieList movies={this.state.movies} />}
       </>
     );
   }
