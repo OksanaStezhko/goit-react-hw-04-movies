@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-//import queryString from 'query-string'; вариант с библиотекой
+import Container from '../components/Container';
 import SearchBar from '../components/Searchbar';
 import MovieList from '../components/MovieList';
 import fetchTheMovieDb from '../servises/themovies-api';
+// import routes from '../routes'; //
+//import queryString from 'query-string'; вариант с библиотекой
+
 class MovieView extends Component {
   state = {
     movies: null,
@@ -40,15 +43,17 @@ class MovieView extends Component {
       ...location,
       search: `query=${query}`,
     });
-    // this.props.history.push(`${routes.movies}?query=${query}`);
+    // history.push(`${routes.movies}?query=${query}`);//тоже рабочий вариант
   };
 
   render() {
     return (
-      <>
-        <SearchBar onSubmit={this.handleChangeQuery} />
-        {this.state.movies && <MovieList movies={this.state.movies} />}
-      </>
+      <main>
+        <Container>
+          <SearchBar onSubmit={this.handleChangeQuery} />
+          {this.state.movies && <MovieList movies={this.state.movies} />}
+        </Container>
+      </main>
     );
   }
 }

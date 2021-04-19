@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+
+import Container from '../components/Container';
+import MovieInfo from '../components/MovieInfo';
 import CastList from '../components/CastList';
 import ReviewList from '../components/ReviewList';
+
 import routes from '../routes';
 import fetchTheMovieDb from '../servises/themovies-api';
-import MovieInfo from '../components/MovieInfo';
 
 class MovieInfoView extends Component {
   state = {
@@ -24,6 +27,7 @@ class MovieInfoView extends Component {
     if (location.state && location.state.from) {
       return history.push(location.state.from);
     }
+
     history.push(routes.home);
   };
 
@@ -31,9 +35,9 @@ class MovieInfoView extends Component {
     const { id: idFilm, credits, reviews } = this.state.movie;
 
     return (
-      <>
+      <main>
         {idFilm && (
-          <>
+          <Container>
             <button
               type="button"
               className="button-back"
@@ -58,9 +62,9 @@ class MovieInfoView extends Component {
               />
               ;
             </Switch>
-          </>
+          </Container>
         )}
-      </>
+      </main>
     );
   }
 }

@@ -1,11 +1,15 @@
 .movie-list {
   display: flex;
   flex-wrap: wrap;
+
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px;
 }
 
 .movie-list__item {
   text-decoration: none;
-  width: calc((100% - 160px) / 4);
+  width: calc((100% - 60px) / 4);
 
   -webkit-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
   -moz-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);

@@ -3,7 +3,7 @@ import ReviewCard from '../ReviewCard';
 
 const ReviewList = ({ movieReviewList }) => {
   return (
-    <ul>
+    <ul className="review-list">
       {movieReviewList.map(({ id, ...reviewInfo }) => (
         <ReviewCard key={id} reviewInfo={reviewInfo} />
       ))}

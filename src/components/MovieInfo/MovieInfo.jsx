@@ -2,7 +2,9 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import formatingData from '../../servises/formatinData';
 
-const MovieInfo = ({ movie, match }) => {
+const MovieInfo = ({ movie, match, location }) => {
+  const locationFrom = location.state.from;
+
   const dataUpdate = formatingData(movie);
   const {
     title,
@@ -41,13 +43,25 @@ const MovieInfo = ({ movie, match }) => {
       </div>
       <ul className="addInfo">
         <li className="addInfo__item" key="cast">
-          <Link className="addInfo__link" to={`${match.url}/cast`}>
+          <Link
+            className="addInfo__link"
+            to={{
+              pathname: `${match.url}/cast`,
+              state: { from: locationFrom },
+            }}
+          >
             Cast
           </Link>
         </li>
         {isReview ? (
           <li className="addInfo__item" key="reviews">
-            <Link className="addInfo__link" to={`${match.url}/reviews`}>
+            <Link
+              className="addInfo__link"
+              to={{
+                pathname: `${match.url}/reviews`,
+                state: { from: locationFrom },
+              }}
+            >
               Reviews
             </Link>
           </li>
