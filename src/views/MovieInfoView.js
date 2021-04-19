@@ -20,8 +20,7 @@ class MovieInfoView extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetchTheMovieDb(
-      'movieInfo',
+    const response = await fetchTheMovieDb.requestMovieDetals(
       this.props.match.params.movieId,
     );
     this.setState({ movie: { ...response } });

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import routes from './routes';
 
 import AppHeader from './components/AppHeader';
+import Loader from './components/Loader';
 
 const HomeView = lazy(() =>
   import('./views/HomeView' /* webpackChunkName: "home-view" */),
@@ -17,8 +18,8 @@ const MoviesView = lazy(() =>
 
 const App = () => (
   <>
-    <Suspense fallback={<h1>загружаем...</h1>}>
-      <AppHeader />
+    <AppHeader />
+    <Suspense fallback={<Loader />}>
       <Switch>
         <Route exact path={routes.home} component={HomeView} />;
         <Route path={routes.movieInfo} component={MovieInfoView} />;

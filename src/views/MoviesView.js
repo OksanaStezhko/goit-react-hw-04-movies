@@ -24,9 +24,7 @@ class MovieView extends Component {
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.searchQuery !== this.state.searchQuery) {
-      const response = await fetchTheMovieDb(
-        'search',
-        '',
+      const response = await fetchTheMovieDb.requestSearchMovie(
         this.state.searchQuery,
       );
 

@@ -9,7 +9,7 @@ class HomeView extends Component {
   state = { movies: null };
 
   async componentDidMount() {
-    const response = await fetchTheMovieDb('trading');
+    const response = await fetchTheMovieDb.requestTradingMovie();
     this.setState({ movies: response.results });
   }
   render() {
