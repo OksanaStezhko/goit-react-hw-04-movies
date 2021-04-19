@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import CastList from '../components/CastList';
 import ReviewList from '../components/ReviewList';
 import routes from '../routes';
 import fetchTheMovieDb from '../servises/themovies-api';
+import MovieInfo from '../components/MovieInfo';
 
-const pathForLargeImg = 'https://image.tmdb.org/t/p/w342/';
-class MovieInfo extends Component {
+class MovieInfoView extends Component {
   state = {
     movie: {},
   };
@@ -28,49 +28,20 @@ class MovieInfo extends Component {
   };
 
   render() {
-    const {
-      id: idFilm,
-      title,
-      poster_path,
-      overview,
-      popularity,
-      release_date,
-      genres,
-      credits,
-      reviews,
-    } = this.state.movie;
-
-    const genresList = genres
-      ? genres.map(genre => genre.name).join(', ')
-      : null;
-
-    const isReview = reviews?.results.length !== 0 ? true : false;
+    const { id: idFilm, credits, reviews } = this.state.movie;
 
     return (
       <>
-        <button type="button" onClick={this.handleClickButton}>
-          Go back
-        </button>
         {idFilm && (
-          <div>
-            <h2>{title}</h2>
-            <img src={pathForLargeImg + poster_path} alt="" />
-            <p>{overview}</p>
-            <p>{popularity}</p>
-            <p>{release_date}</p>
-            <p>{genresList}</p>
-            <ul>
-              <li>
-                <Link to={`${this.props.match.url}/cast`}>Cast</Link>
-              </li>
-              {isReview ? (
-                <li>
-                  <Link to={`${this.props.match.url}/reviews`}>Reviews</Link>
-                </li>
-              ) : (
-                <p>There are no reviews for this movie!</p>
-              )}
-            </ul>
+          <>
+            <button
+              type="button"
+              className="button-back"
+              onClick={this.handleClickButton}
+            >
+              Go back
+            </button>
+            <MovieInfo movie={this.state.movie} />
             <Switch>
               <Route
                 path={`${this.props.match.path}/cast`}
@@ -87,10 +58,10 @@ class MovieInfo extends Component {
               />
               ;
             </Switch>
-          </div>
+          </>
         )}
       </>
     );
   }
 }
-export default MovieInfo;
+export default MovieInfoView;

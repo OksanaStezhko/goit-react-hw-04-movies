@@ -1,17 +1,21 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import routes from '../../routes';
 import formatingData from '../../servises/formatinData';
 
 const MovieCard = ({ movieInfo }) => {
   const movieInfoUpdate = formatingData(movieInfo);
+
   return (
-    <div>
-      <div>
-        <img src={movieInfoUpdate.imgUrl} alt="movie poster" />
+    <div className="movie">
+      <div className="movie__thumb">
+        <img
+          className="movie__img"
+          src={movieInfoUpdate.imgUrl}
+          alt="movie poster"
+        />
       </div>
-      <p>{movieInfoUpdate.title}</p>
-      <p>{movieInfoUpdate.realese_year}</p>
+      <p className="movie__text">
+        {movieInfoUpdate.title + ', ' + movieInfoUpdate.realese_year}
+      </p>
     </div>
   );
 };

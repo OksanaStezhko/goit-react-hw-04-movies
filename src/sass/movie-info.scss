@@ -1,0 +1,78 @@
+.movie-info__box {
+  display: flex;
+}
+
+.movie-info__image {
+  margin-right: 20px;
+}
+
+.movie-info__image,
+.movie-info__text {
+  border-radius: 4px;
+  -webkit-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+  -moz-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+  box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+}
+
+.movie-info__text {
+  padding: 30px;
+}
+
+.movie-info__title {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: rgb(11, 11, 184);
+}
+
+.movie-info__paragraf {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(11, 11, 184);
+}
+
+.addInfo {
+  display: flex;
+}
+
+.addInfo__item {
+  min-width: 80px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 4px;
+  -webkit-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+  -moz-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+  box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+  background-image: linear-gradient(
+    to left,
+    rgba(148, 255, 212, 0.8),
+    rgba(144, 246, 212, 0.82),
+    rgba(140, 236, 211, 0.84),
+    rgba(137, 227, 211, 0.85),
+    rgba(133, 218, 210, 0.87),
+    rgba(129, 209, 210, 0.89),
+    rgba(125, 199, 209, 0.91),
+    rgba(121, 190, 209, 0.93),
+    rgba(117, 181, 208, 0.95),
+    rgba(114, 172, 208, 0.96),
+    rgba(110, 162, 207, 0.98),
+    rgb(106, 153, 207)
+  );
+}
+
+.addInfo__item:first-child {
+  margin-right: 20px;
+}
+
+.addInfo__link {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(11, 11, 184);
+}
+.movie-info__message {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(131, 131, 145);
+}

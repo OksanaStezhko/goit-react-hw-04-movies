@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.nav__item {
+  margin-right: 30px;
+}
+
+.nav__link {
+  color: rgb(11, 11, 184);
+  text-decoration: none;
+}
+
+.nav__link.nav__link--active {
+  color: white;
+}

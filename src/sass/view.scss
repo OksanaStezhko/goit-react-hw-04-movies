@@ -1,12 +1,18 @@
-.container {
-  max-width: 1400px;
-  padding: 0 50px;
-  margin-left: auto;
-  margin-right: auto;
+.view-title {
+  color: rgb(11, 11, 184);
+  text-align: center;
+  text-transform: uppercase;
 }
 
-header > .container {
-  display: flex;
+.button-back {
+  min-width: 80px;
+  padding: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 4px;
+  -webkit-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+  -moz-box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
+  box-shadow: 4px 4px 8px 4px rgba(20, 87, 139, 0.2);
   background-image: linear-gradient(
     to left,
     rgba(148, 255, 212, 0.8),
@@ -22,9 +28,4 @@ header > .container {
     rgba(110, 162, 207, 0.98),
     rgb(106, 153, 207)
   );
-}
-
-main > .container {
-  min-height: 100vh;
-  padding: 50px;
 }

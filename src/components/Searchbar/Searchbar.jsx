@@ -18,17 +18,18 @@ class Searchbar extends Component {
     if (!query) return;
 
     this.props.onSubmit(query);
-    this.setState({ query: '' });
+    // this.setState({ query: '' });
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <button type="submit">
-          <span>Search</span>
+      <form className="searchForm" onSubmit={this.handleSubmit}>
+        <button type="submit" className="searchForm__button">
+          <span className="searchForm__button__label"> Search</span>
         </button>
 
         <input
+          className="searchForm__input"
           type="text"
           autoComplete="off"
           autoFocus

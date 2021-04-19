@@ -14,7 +14,7 @@ class HomeView extends Component {
   render() {
     return (
       <>
-        <h1>Tranding today</h1>
+        <h1 className="view-title">Tranding today</h1>
         {this.state.movies && <MovieList movies={this.state.movies} />}
       </>
     );

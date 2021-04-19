@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-
+//import queryString from 'query-string'; вариант с библиотекой
 import SearchBar from '../components/Searchbar';
 import MovieList from '../components/MovieList';
 import fetchTheMovieDb from '../servises/themovies-api';
-import routes from '../routes';
 class MovieView extends Component {
   state = {
     movies: null,
     searchQuery: '',
   };
+
+  componentDidMount() {
+    if (this.props.location.search !== '') {
+      let paramsSearch = new URLSearchParams(this.props.location.search).get(
+        'query',
+      );
+      // let paramsSearch = queryString.parse(this.props.location.search).query; //вариант с библиотекой
+      this.setState({ searchQuery: paramsSearch });
+    }
+  }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.searchQuery !== this.state.searchQuery) {
@@ -24,11 +32,15 @@ class MovieView extends Component {
   }
 
   handleChangeQuery = query => {
+    const { history, location } = this.props;
     this.setState({
       searchQuery: query,
     });
-    console.log(this.props.match);
-    this.props.history.push(`${routes.movies}?query=${query}`);
+    history.push({
+      ...location,
+      search: `query=${query}`,
+    });
+    // this.props.history.push(`${routes.movies}?query=${query}`);
   };
 
   render() {
