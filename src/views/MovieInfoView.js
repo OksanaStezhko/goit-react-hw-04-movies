@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Container from '../components/Container';
 import MovieInfo from '../components/MovieInfo';
-import CastList from '../components/CastList';
-import ReviewList from '../components/ReviewList';
 
 import routes from '../routes';
 import fetchTheMovieDb from '../servises/themovies-api';
+
+const CastList = lazy(() =>
+  import('../components/CastList' /* webpackChunkName: "cast" */),
+);
+const ReviewList = lazy(() =>
+  import('../components/ReviewList' /* webpackChunkName: "reviews" */),
+);
 
 class MovieInfoView extends Component {
   state = {
@@ -22,7 +27,8 @@ class MovieInfoView extends Component {
     this.setState({ movie: { ...response } });
   }
 
-  handleClickButton = () => {
+  handleClickButton = event => {
+    event.preventDefault();
     const { location, history } = this.props;
     if (location.state && location.state.from) {
       return history.push(location.state.from);
@@ -46,22 +52,24 @@ class MovieInfoView extends Component {
               Go back
             </button>
             <MovieInfo movie={this.state.movie} />
-            <Switch>
-              <Route
-                path={`${this.props.match.path}/cast`}
-                render={props => {
-                  return <CastList movieCastList={credits.cast} />;
-                }}
-              />
-              ;
-              <Route
-                path={`${this.props.match.path}/reviews`}
-                render={props => {
-                  return <ReviewList movieReviewList={reviews.results} />;
-                }}
-              />
-              ;
-            </Switch>
+            <Suspense fallback={<></>}>
+              <Switch>
+                <Route
+                  path={`${this.props.match.path}/cast`}
+                  render={props => {
+                    return <CastList movieCastList={credits.cast} />;
+                  }}
+                />
+                ;
+                <Route
+                  path={`${this.props.match.path}/reviews`}
+                  render={props => {
+                    return <ReviewList movieReviewList={reviews.results} />;
+                  }}
+                />
+                ;
+              </Switch>
+            </Suspense>
           </Container>
         )}
       </main>
