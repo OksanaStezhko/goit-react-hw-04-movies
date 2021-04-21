@@ -1,5 +1,6 @@
 import React from 'react';
 import CastCard from '../CastCard';
+import PropTypes from 'prop-types';
 
 const CastList = ({ movieCastList }) => {
   return (
@@ -9,6 +10,14 @@ const CastList = ({ movieCastList }) => {
       ))}
     </ul>
   );
+};
+
+CastList.propTypes = {
+  movieCastList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default CastList;
